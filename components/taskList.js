@@ -1,21 +1,19 @@
+import Task from "./task";
+
 const TaskList = ({ tasks }) => {
-    const currentTask = tasks[0];
+    const uncompletedTasks = tasks.filter(x => !x.completed);
+    const completedTasks = tasks.filter(x => x.completed);
 
     return (
         <div className="task-list">
-            <div className="task current-task">
-                <h1>Current Task:</h1>
-                <div className="current-task-body">
-                    <h2>{currentTask.title}</h2>
-                    <p>{currentTask.description}</p>
-                    <p>Due Date: {currentTask.dueDate}</p>
-                    <p>Completed: {currentTask.completed ? 'Yes' : 'No'}</p>
-                </div>
-            </div>
-            {tasks.slice(1).map((task) => (
-                <div className="task" key={task.id}>
-                    <h2>{task.title}</h2>
-                </div>
+            <h1>Tasks</h1>
+            <Task task={uncompletedTasks[0]} isCurrent={true} />
+            {uncompletedTasks.slice(1).map((task) => (
+                <Task task={task} key={task.id} />
+            ))}
+            <h1>Completed Tasks</h1>
+            {completedTasks.map((task) => (
+                <Task task={task} key={task.id} />
             ))}
         </div>
     );
