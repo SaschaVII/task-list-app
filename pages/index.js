@@ -1,11 +1,11 @@
 import TaskList from "@/components/taskList";
-import { useEffect, useState } from "react";
+import useLocalStorageTaskList from "@/hooks/useLocalStorageTaskList";
 
 const Index = () => {
-    const [taskList, setTaskList] = useState();
+    const [taskList, setTaskList] = useLocalStorageTaskList();
     // TODO: Add loading indicator and provide a loadingState from a custom hook
-
-    const dummyTasks =
+    // ! localStorage gets overwritten by initialisation of state still everytime page is refreshed
+    const dummyTasks = 
         [
             {
                 "id": 1,
@@ -57,35 +57,45 @@ const Index = () => {
     // }, []);
 
     // Fill local storage with dummy data if none present
-    useEffect(() => {
-        console.log("localStorage: " + typeof localStorage.getItem('taskList'));
-        if (Array.isArray(localStorage.getItem('taskList'))) {
-            console.log("are we here???")
-            const storedData = JSON.parse(localStorage.getItem('taskList'));
-        } else {
-            localStorage.setItem('taskList', JSON.stringify(dummyTasks));
-        }
-    });
+    // useEffect(() => {
+    //     localStorage.setItem('taskList', JSON.stringify(dummyTasks));
+    // });
 
     // Load data from local storage on component mount
-    useEffect(() => {
-        const storedData = localStorage.getItem('taskList');
-        if (storedData) {
-            setTaskList(JSON.parse(storedData));
-        }
-    }, []);
+    // useEffect(() => {
+    //     const storedData = localStorage.getItem('taskList');
+    //     if (storedData) {
+    //         setTaskList(JSON.parse(storedData));
+    //     }
+    // }, []);
 
-    // Save data to local storage when taskList changes
-    useEffect(() => {
-        localStorage.setItem('taskList', JSON.stringify(taskList));
-    }, [taskList]);
+    // // Save data to local storage when taskList changes
+    // useEffect(() => {
+    //     localStorage.setItem('taskList', JSON.stringify(taskList));
+    // }, [taskList]);
 
+    const handleBtnClick = () => {
+        addTask();
+    };
+
+    const addTask = () => {
+        const newTask = {
+            "id": taskList.length,
+            "title": "Lead a 7a",
+            "description": "Readpoint a 7a indoor sport climb.",
+            "completed": false,
+            "dueDate": "2024-01-01"
+        };
+
+        setTaskList([...taskList, newTask]);
+    };
 
     if (!taskList) return (<p>loading...</p>);
 
     return (
         <>
             <TaskList tasks={taskList} />
+            <button onClick={handleBtnClick}>+ Add Task</button>
         </>
     );
 };

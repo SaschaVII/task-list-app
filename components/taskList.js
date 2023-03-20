@@ -4,6 +4,8 @@ const TaskList = ({ tasks }) => {
     const uncompletedTasks = tasks.filter(x => !x.completed);
     const completedTasks = tasks.filter(x => x.completed);
 
+    if (!tasks || tasks.length  === 0) return (<></>);
+
     return (
         <div className="task-list">
             <h1>Tasks</h1>
