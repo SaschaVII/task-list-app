@@ -4,7 +4,7 @@ const TaskList = ({ tasks }) => {
     const uncompletedTasks = tasks.filter(x => !x.completed);
     const completedTasks = tasks.filter(x => x.completed);
 
-    if (!tasks || tasks.length  === 0) return (<></>);
+    if (!tasks || tasks.length === 0) return (<></>);
 
     return (
         <div className="task-list">
@@ -13,7 +13,7 @@ const TaskList = ({ tasks }) => {
             {uncompletedTasks.slice(1).map((task) => (
                 <Task task={task} key={task.id} />
             ))}
-            <h1>Completed Tasks</h1>
+            {completedTasks.length > 0 && <h1>Completed Tasks</h1>}
             {completedTasks.map((task) => (
                 <Task task={task} key={task.id} />
             ))}
