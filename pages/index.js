@@ -3,11 +3,18 @@ import useLocalStorageTaskList from "@/hooks/useLocalStorageTaskList";
 
 const Index = () => {
     const [taskList, setTaskList] = useLocalStorageTaskList();
-    // TODO: Add loading indicator and provide a loadingState from a custom hook
-    // ! localStorage gets overwritten by initialisation of state still everytime page is refreshed
-    const dummyTasks = 
-        [
-            {
+
+    const handleBtnClick = () => {
+        addTask();
+    };
+
+    const handleBtnClearListClick = () => {
+        setTaskList([]);
+    };
+
+    const handleBtnDummyListClick = () => {
+        setTaskList(
+            [{
                 "id": 1,
                 "title": "Complete Task List App",
                 "description": "Finish building and testing the task list app by end of week",
@@ -41,41 +48,8 @@ const Index = () => {
                 "description": "Read at least one chapter of 'The Catcher in the Rye'",
                 "completed": true,
                 "dueDate": "2023-03-18"
-            }
-        ];
-
-    // fetching tasks from server
-    // useEffect(() => {
-    //     const getTasks = async () => {
-    //         const response = await fetch('/api/tasks');
-    //         const result = await response.json();
-    //         setTaskList(result);
-    //         // console.log("🚀 ~ file: index.js:11 ~ getTasks ~ result:", result);
-    //     };
-
-    //     getTasks();
-    // }, []);
-
-    // Fill local storage with dummy data if none present
-    // useEffect(() => {
-    //     localStorage.setItem('taskList', JSON.stringify(dummyTasks));
-    // });
-
-    // Load data from local storage on component mount
-    // useEffect(() => {
-    //     const storedData = localStorage.getItem('taskList');
-    //     if (storedData) {
-    //         setTaskList(JSON.parse(storedData));
-    //     }
-    // }, []);
-
-    // // Save data to local storage when taskList changes
-    // useEffect(() => {
-    //     localStorage.setItem('taskList', JSON.stringify(taskList));
-    // }, [taskList]);
-
-    const handleBtnClick = () => {
-        addTask();
+            }]
+        );
     };
 
     const addTask = () => {
@@ -96,6 +70,8 @@ const Index = () => {
         <>
             <TaskList tasks={taskList} />
             <button onClick={handleBtnClick}>+ Add Task</button>
+            <button onClick={handleBtnDummyListClick}>Fill with dummy tasks</button>
+            <button onClick={handleBtnClearListClick}>Clear List</button>
         </>
     );
 };
