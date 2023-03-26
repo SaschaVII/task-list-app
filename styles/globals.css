@@ -1,27 +1,49 @@
-.task-list {
-  background-color: rgb(193, 193, 221);
-  padding: 2rem;
+html, body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.task, .current-task {
-  font-weight: bold;
-  background-color: rgb(172, 172, 219);
-  padding: .5rem 2rem;
+.task-list {
+  background-color: rgb(255, 255, 255);
+  padding: 1rem;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  background-color: #ffffff;
+  padding: 1rem 2rem;
 }
 
 .task:hover {
-  background-color: rgb(124, 201, 201);
+  background-color: #e0d6eb;
   cursor: pointer;
 }
 
-.task:not(:last-child) {
-  margin-bottom: 1rem;
+.task:not(:last-child):not(.current-task) {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .current-task {
-  background-color: rgb(106, 106, 211);
+  background-color: #f2edf8;
+  padding: 2rem;
 }
 
-.current-task-body {
-  padding-left: 1rem;
+.task .checkbox {
+  width: 40px;
+  height: 40px;
+}
+
+.task-tail {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  gap: 1rem;
+  margin-left: auto;
+}
+
+.task-body {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
 }

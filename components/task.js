@@ -3,17 +3,34 @@ const Task = ({ task, isCurrent }) => {
         <>
             {(isCurrent)
                 ? (
-                    <>
-                        <div className="task current-task-body">
+                    <div className="task current-task">
+                        <input type="checkbox" className="checkbox" />
+                        <div className="task-body">
                             <h2>{task.title}</h2>
                             <p>{task.description}</p>
-                            <p>Due Date: {task.dueDate}</p>
                         </div>
-                    </>
+                        <div className="task-tail">
+                            <div>ACTION BUTTONS ICONS</div>
+                            <div>
+                                <strong>Priority: {task.priority}</strong>
+                            </div>
+                            <div>Due Date: {task.dueDate}</div>
+                        </div>
+                    </div>
                 )
                 : (
                     <div className="task">
-                        <h2>{task.title}</h2>
+                        <input type="checkbox" className="checkbox" />
+                        <div className="task-body">
+                            <h2>{task.title}</h2>
+                        </div>
+                        <div className="task-tail">
+                            <div>ACTION BUTTONS ICONS</div>
+                            <div>
+                                <strong>Priority: {task.priority}</strong>
+                            </div>
+                            <div>Due Date: {task.dueDate}</div>
+                        </div>
                     </div>
                 )
             }
