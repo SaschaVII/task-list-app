@@ -1,5 +1,8 @@
 import TaskList from "@/components/taskList";
 import useLocalStorageTaskList from "@/hooks/useLocalStorageTaskList";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faGear } from '@fortawesome/free-solid-svg-icons'
+import Head from "next/head";
 
 const Index = () => {
     const [taskList, setTaskList] = useLocalStorageTaskList();
@@ -68,10 +71,16 @@ const Index = () => {
 
     return (
         <>
+            <Head>
+                <title>Task List App</title>
+            </Head>
+
+            <h1 className="text-4xl font-bold">Task List App</h1>
+            <FontAwesomeIcon icon={faGear} />
             <TaskList tasks={taskList} />
-            <button onClick={handleBtnClick}>+ Add Task</button>
+            {/* <button onClick={handleBtnClick}>+ Add Task</button>
             <button onClick={handleBtnDummyListClick}>Fill with dummy tasks</button>
-            <button onClick={handleBtnClearListClick}>Clear List</button>
+            <button onClick={handleBtnClearListClick}>Clear List</button> */}
         </>
     );
 };
