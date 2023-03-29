@@ -3,13 +3,15 @@ const Task = ({ task, isCurrent }) => {
         <>
             {(isCurrent)
                 ? (
-                    <div className="task current-task">
-                        <input type="checkbox" className="checkbox" />
-                        <div className="task-body">
+                    <div className="px-5 py-10 flex items-center space-x-4 bg-blue-100 hover:cursor-pointer hover:bg-blue-200">
+                        <div className="flex-shrink-0">
+                            <input type="checkbox" className="checkbox" />
+                        </div>
+                        <div class="flex-1 min-w-0">
                             <h2>{task.title}</h2>
                             <p>{task.description}</p>
                         </div>
-                        <div className="task-tail">
+                        <div class="flex flex-col items-center text-base font-semibold text-gray-900 dark:text-white">
                             <div>ACTION BUTTONS ICONS</div>
                             <div>
                                 <strong>Priority: {task.priority}</strong>
@@ -19,12 +21,14 @@ const Task = ({ task, isCurrent }) => {
                     </div>
                 )
                 : (
-                    <div className="task">
-                        <input type="checkbox" className="checkbox" />
-                        <div className="task-body">
+                    <div className="px-5 py-2 flex items-center space-x-4 hover:cursor-pointer hover:bg-blue-200">
+                        <div className="flex-shrink-0">
+                            <input type="checkbox" className="checkbox" />
+                        </div>
+                        <div class="flex-1 min-w-0">
                             <h2>{task.title}</h2>
                         </div>
-                        <div className="task-tail">
+                        <div class="flex flex-col items-center text-base font-semibold text-gray-900 dark:text-white">
                             <div>ACTION BUTTONS ICONS</div>
                             <div>
                                 <strong>Priority: {task.priority}</strong>
