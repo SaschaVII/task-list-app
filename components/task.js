@@ -5,7 +5,7 @@ const Task = ({ task, isCurrent }) => {
                 ? (
                     <div className="px-5 py-10 flex items-center space-x-4 bg-blue-100 hover:cursor-pointer hover:bg-blue-200">
                         <div className="flex-shrink-0">
-                            <input type="checkbox" className="checkbox" />
+                            <input type="checkbox" />
                         </div>
                         <div class="flex-1 min-w-0">
                             <h2>{task.title}</h2>
@@ -23,7 +23,7 @@ const Task = ({ task, isCurrent }) => {
                 : (
                     <div className="px-5 py-2 flex items-center space-x-4 hover:cursor-pointer hover:bg-blue-200">
                         <div className="flex-shrink-0">
-                            <input type="checkbox" className="checkbox" />
+                            <input type="checkbox" />
                         </div>
                         <div class="flex-1 min-w-0">
                             <h2>{task.title}</h2>

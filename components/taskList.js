@@ -15,12 +15,20 @@ const TaskList = ({ tasks }) => {
 
     // if (!tasks || tasks.length === 0) return (<></>);
     return (
-        <div className="task-list">
-            <Task task={dummyTask} isCurrent={true} />
-            <Task task={dummyTask} isCurrent={false} />
-            <Task task={dummyTask} isCurrent={false} />
-            <Task task={dummyTask} isCurrent={false} />
-        </div>
+        <ul>
+            <li>
+                < Task task={dummyTask} isCurrent={true} />
+            </li >
+            <li>
+                <Task task={dummyTask} isCurrent={false} />
+            </li>
+            <li>
+                <Task task={dummyTask} isCurrent={false} />
+            </li>
+            <li>
+                <Task task={dummyTask} isCurrent={false} />
+            </li>
+        </ul >
     );
     // return (
     //     <div className="task-list">
