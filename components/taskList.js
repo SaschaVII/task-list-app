@@ -24,6 +24,7 @@ const TaskList = () => {
     };
 
     const handleFillDummyDataClick = () => fillDummyList();
+    const handleAddTaskClick = () => addTask();
 
     // * Helper Functions
     const fillDummyList = () => {
@@ -103,6 +104,11 @@ const TaskList = () => {
             {uncompletedTasks.slice(1).map((task) => (
                 <li key={task.id}><Task task={task} onComplete={handleTaskCompletion} /></li>
             ))}
+            <li>
+                <div className="px-5 py-7 flex items-center space-x-4 cursor-pointer hover:bg-blue-200" onClick={handleAddTaskClick}>
+                    <FontAwesomeIcon className="mr-2 -ml-1 grow text-2xl" icon={faPlus} />
+                </div>
+            </li>
             {completedTasks.length > 0 && <h2 className="text-4xl font-bold">Completed Tasks</h2>}
             {
                 completedTasks.map((task) => (
