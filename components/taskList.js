@@ -8,8 +8,11 @@ const TaskList = () => {
     // * States
     const [taskList, setTaskList] = useLocalStorageTaskList();
 
-    const uncompletedTasks = taskList.filter(x => !x.completed);
-    const completedTasks = taskList.filter(x => x.completed);
+    // * Calculated Values
+    // sort task list by priority then due date
+    const sortedTaskList = taskList.sort((a, b) => a.priority - b.priority || compareDates(a, b));
+    const uncompletedTasks = sortedTaskList.filter(x => !x.completed);
+    const completedTasks = sortedTaskList.filter(x => x.completed);
 
     // * Event Handlers
     const handleTaskCompletion = (taskId) => {
@@ -33,6 +36,12 @@ const TaskList = () => {
     const handleAddTaskClick = () => addTask();
 
     // * Helper Functions
+    function compareDates(a, b) {
+        const dateA = new Date(a.dueDate);
+        const dateB = new Date(b.dueDate);
+        return dateA - dateB;
+    };
+
     const fillDummyList = () => {
         setTaskList(
             [{
@@ -69,6 +78,14 @@ const TaskList = () => {
             },
             {
                 "id": 4,
+                "title": "Fix S1 Bugs",
+                "description": "Fix all bugs listed on ClickUp for the S1 Website",
+                "completed": false,
+                "dueDate": "2023-04-10",
+                "priority": 1
+            },
+            {
+                "id": 5,
                 "title": "Read a Book",
                 "description": "Read at least one chapter of 'The Catcher in the Rye'",
                 "completed": true,
