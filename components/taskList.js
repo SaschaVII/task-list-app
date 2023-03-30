@@ -16,7 +16,7 @@ const TaskList = () => {
         // set task with id matching taskId to completed
         const updatedTaskList = taskList.map(task => {
             if (task.id === taskId) {
-                task.completed = true;
+                task.completed = !task.completed;
             }
             return task;
         });
@@ -112,7 +112,7 @@ const TaskList = () => {
             {completedTasks.length > 0 && <h2 className="text-4xl font-bold">Completed Tasks</h2>}
             {
                 completedTasks.map((task) => (
-                    <li key={task.id}><Task task={task} /></li>
+                    <li key={task.id}><Task task={task} onComplete={handleTaskCompletion} /></li>
                 ))
             }
         </ul >
