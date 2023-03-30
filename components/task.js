@@ -17,6 +17,20 @@ const Task = ({ task, isCurrent, onComplete, onDelete }) => {
     const handleFocusClick = () => console.log("Focus Clicked");
     const handleEditClick = () => console.log("Edit Clicked");
 
+    // * Helper Functions
+    const calculateDaysFromNow = (date) => {
+        const today = new Date();
+        const dueDate = new Date(date);
+        const diffTime = dueDate - today;
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        return diffDays;
+    };
+
+    const daysFromNowString = (date) => {
+        const days = calculateDaysFromNow(date);
+        return (days === 0) ? "Due Today" : (days === 1) ? "Due Tomorrow" : `Due in ${days} days`;
+    };
+
     return (
         <>
             <div className={styles}>
@@ -45,6 +59,7 @@ const Task = ({ task, isCurrent, onComplete, onDelete }) => {
                                 <strong>Priority: {task.priority}</strong>
                             </div>
                             <div>Due Date: {task.dueDate}</div>
+                            <div>{daysFromNowString(task.dueDate)}</div>
                         </>
                     )}
                     {task.completed && (

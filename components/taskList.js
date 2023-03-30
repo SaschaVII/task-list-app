@@ -107,7 +107,7 @@ const TaskList = () => {
             "title": "Lead a 7a",
             "description": "Readpoint a 7a indoor sport climb.",
             "completed": false,
-            "dueDate": "2024-01-01",
+            "dueDate": "2023-03-30",
             "priority": 1,
             "focused": false
         };
