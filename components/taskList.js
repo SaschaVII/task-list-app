@@ -9,8 +9,8 @@ const TaskList = () => {
     const [taskList, setTaskList] = useLocalStorageTaskList();
 
     // * Calculated Values
-    // sort task list by priority then due date
-    const sortedTaskList = taskList.sort((a, b) => a.priority - b.priority || compareDates(a, b));
+    // sort task list by focused then priority then due date
+    const sortedTaskList = taskList.sort((a, b) => b.focused - a.focused || a.priority - b.priority || compareDates(a, b));
     const uncompletedTasks = sortedTaskList.filter(x => !x.completed);
     const completedTasks = sortedTaskList.filter(x => x.completed);
 
@@ -50,7 +50,8 @@ const TaskList = () => {
                 "description": "Finish building and testing the task list app by end of week",
                 "completed": false,
                 "dueDate": "2023-03-19",
-                "priority": 1
+                "priority": 1,
+                "focused": false
             },
             {
                 "id": 1,
@@ -58,7 +59,8 @@ const TaskList = () => {
                 "description": "Research the company, practice answering interview questions, and dress professionally",
                 "completed": true,
                 "dueDate": "2023-03-22",
-                "priority": 2
+                "priority": 2,
+                "focused": false
             },
             {
                 "id": 2,
@@ -66,7 +68,8 @@ const TaskList = () => {
                 "description": "Do 30 minutes of cardio and 20 minutes of weight lifting",
                 "completed": false,
                 "dueDate": "2023-03-17",
-                "priority": 2
+                "priority": 2,
+                "focused": false
             },
             {
                 "id": 3,
@@ -74,7 +77,8 @@ const TaskList = () => {
                 "description": "Get bread, milk, eggs, and fruit",
                 "completed": false,
                 "dueDate": "2023-03-16",
-                "priority": 3
+                "priority": 3,
+                "focused": true
             },
             {
                 "id": 4,
@@ -82,7 +86,8 @@ const TaskList = () => {
                 "description": "Fix all bugs listed on ClickUp for the S1 Website",
                 "completed": false,
                 "dueDate": "2023-04-10",
-                "priority": 1
+                "priority": 1,
+                "focused": false
             },
             {
                 "id": 5,
@@ -90,7 +95,8 @@ const TaskList = () => {
                 "description": "Read at least one chapter of 'The Catcher in the Rye'",
                 "completed": true,
                 "dueDate": "2023-03-18",
-                "priority": 2
+                "priority": 2,
+                "focused": false
             }]
         );
     };
@@ -102,7 +108,8 @@ const TaskList = () => {
             "description": "Readpoint a 7a indoor sport climb.",
             "completed": false,
             "dueDate": "2024-01-01",
-            "priority": 1
+            "priority": 1,
+            "focused": false
         };
 
         console.log(newTask);
