@@ -2,7 +2,7 @@ import Task from "./task";
 import useLocalStorageTaskList from "@/hooks/useLocalStorageTaskList";
 import Button from "./button";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus, faTrash, faWandMagicSparkles } from '@fortawesome/free-solid-svg-icons'
+import { faPlus, faWandMagicSparkles } from '@fortawesome/free-solid-svg-icons'
 
 const TaskList = () => {
     // * States
@@ -162,7 +162,7 @@ const TaskList = () => {
                 <li key={task.id}><Task task={task} onComplete={handleTaskCompletion} onDelete={handleTaskDeletion} onFocus={handleTaskFocus} /></li>
             ))}
             <li>
-                <div className="px-5 py-7 flex items-center space-x-4 cursor-pointer hover:bg-blue-200" onClick={handleAddTaskClick}>
+                <div className="px-5 py-7 flex items-center space-x-4 cursor-pointer hover:bg-gray-200" onClick={handleAddTaskClick}>
                     <FontAwesomeIcon className="mr-2 -ml-1 grow text-2xl" icon={faPlus} />
                 </div>
             </li>
