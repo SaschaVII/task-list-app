@@ -2,7 +2,7 @@ import { faGlasses, faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { faSquare, faSquareCheck } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Task = ({ task, isCurrent, onComplete, onDelete }) => {
+const Task = ({ task, isCurrent, onComplete, onDelete, onFocus }) => {
     // * Styles
     const currentStyles = "bg-blue-100 py-10";
     const notCurrentStyles = "py-2";
@@ -14,7 +14,7 @@ const Task = ({ task, isCurrent, onComplete, onDelete }) => {
     // * Event Handlers
     const handleCompleteTask = () => onComplete(task.id);
     const handleDeleteClick = () => onDelete(task.id);
-    const handleFocusClick = () => console.log("Focus Clicked");
+    const handleFocusClick = () => onFocus(task.id);
     const handleEditClick = () => console.log("Edit Clicked");
 
     // * Helper Functions
@@ -48,7 +48,7 @@ const Task = ({ task, isCurrent, onComplete, onDelete }) => {
                                 <div onClick={handleDeleteClick} className="hover:text-blue-500 p-2 cursor-pointer">
                                     <FontAwesomeIcon icon={faTrash} />
                                 </div>
-                                <div onClick={handleFocusClick} className="hover:text-blue-500 p-2 cursor-pointer">
+                                <div onClick={handleFocusClick} className={"hover:text-blue-500 p-2 cursor-pointer" + ((task.focused) ? " text-blue-500" : "")}>
                                     <FontAwesomeIcon icon={faGlasses} />
                                 </div>
                                 <div onClick={handleEditClick} className="hover:text-blue-500 p-2 cursor-pointer">

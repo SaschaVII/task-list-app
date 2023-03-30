@@ -32,6 +32,19 @@ const TaskList = () => {
         setTaskList(updatedTaskList);
     };
 
+    const handleTaskFocus = (taskId) => {
+        // set task with id matching taskId to focused and all other tasks to not focused
+        const updatedTaskList = taskList.map(task => {
+            if (task.id === taskId) {
+                task.focused = !task.focused;
+            } else {
+                task.focused = false;
+            }
+            return task;
+        });
+        setTaskList(updatedTaskList);
+    };
+
     const handleFillDummyDataClick = () => fillDummyList();
     const handleAddTaskClick = () => addTask();
 
@@ -142,11 +155,11 @@ const TaskList = () => {
             {uncompletedTasks.length > 0 && (
                 <>
                     <h2 className="text-4xl font-bold">Pending Tasks</h2>
-                    <li><Task task={uncompletedTasks[0]} isCurrent={true} onComplete={handleTaskCompletion} onDelete={handleTaskDeletion} /></li>
+                    <li><Task task={uncompletedTasks[0]} isCurrent={true} onComplete={handleTaskCompletion} onDelete={handleTaskDeletion} onFocus={handleTaskFocus} /></li>
                 </>
             )}
             {uncompletedTasks.slice(1).map((task) => (
-                <li key={task.id}><Task task={task} onComplete={handleTaskCompletion} onDelete={handleTaskDeletion} /></li>
+                <li key={task.id}><Task task={task} onComplete={handleTaskCompletion} onDelete={handleTaskDeletion} onFocus={handleTaskFocus} /></li>
             ))}
             <li>
                 <div className="px-5 py-7 flex items-center space-x-4 cursor-pointer hover:bg-blue-200" onClick={handleAddTaskClick}>
