@@ -23,6 +23,12 @@ const TaskList = () => {
         setTaskList(updatedTaskList);
     };
 
+    const handleTaskDeletion = (taskId) => {
+        // delete task with id matching taskId
+        const updatedTaskList = taskList.filter(task => task.id !== taskId);
+        setTaskList(updatedTaskList);
+    };
+
     const handleFillDummyDataClick = () => fillDummyList();
     const handleAddTaskClick = () => addTask();
 
@@ -74,7 +80,7 @@ const TaskList = () => {
 
     const addTask = () => {
         const newTask = {
-            "id": taskList.length,
+            "id": generateUniqueId(),
             "title": "Lead a 7a",
             "description": "Readpoint a 7a indoor sport climb.",
             "completed": false,
@@ -82,7 +88,21 @@ const TaskList = () => {
             "priority": 1
         };
 
+        console.log(newTask);
+
         setTaskList([...taskList, newTask]);
+    };
+
+    const generateUniqueId = () => {
+        // ! this is not the best way of generating a unique id
+        let uniqueId = taskList.length;
+
+        // check if id already exists otherwise keep incrementing
+        while (taskList.find(x => x.id === uniqueId)) {
+            uniqueId++;
+        }
+
+        return uniqueId;
     };
 
     if (!taskList || taskList.length === 0) return (
@@ -98,11 +118,11 @@ const TaskList = () => {
             {uncompletedTasks.length > 0 && (
                 <>
                     <h2 className="text-4xl font-bold">Pending Tasks</h2>
-                    <li><Task task={uncompletedTasks[0]} isCurrent={true} onComplete={handleTaskCompletion} /></li>
+                    <li><Task task={uncompletedTasks[0]} isCurrent={true} onComplete={handleTaskCompletion} onDelete={handleTaskDeletion} /></li>
                 </>
             )}
             {uncompletedTasks.slice(1).map((task) => (
-                <li key={task.id}><Task task={task} onComplete={handleTaskCompletion} /></li>
+                <li key={task.id}><Task task={task} onComplete={handleTaskCompletion} onDelete={handleTaskDeletion} /></li>
             ))}
             <li>
                 <div className="px-5 py-7 flex items-center space-x-4 cursor-pointer hover:bg-blue-200" onClick={handleAddTaskClick}>
@@ -112,7 +132,7 @@ const TaskList = () => {
             {completedTasks.length > 0 && <h2 className="text-4xl font-bold">Completed Tasks</h2>}
             {
                 completedTasks.map((task) => (
-                    <li key={task.id}><Task task={task} onComplete={handleTaskCompletion} /></li>
+                    <li key={task.id}><Task task={task} onComplete={handleTaskCompletion} onDelete={handleTaskDeletion} /></li>
                 ))
             }
         </ul >
