@@ -7,11 +7,11 @@ const Task = ({ task, isCurrent }) => {
                         <div className="flex-shrink-0">
                             <input type="checkbox" />
                         </div>
-                        <div class="flex-1 min-w-0">
+                        <div className="flex-1 min-w-0">
                             <h2>{task.title}</h2>
                             <p>{task.description}</p>
                         </div>
-                        <div class="flex flex-col items-center text-base font-semibold text-gray-900 dark:text-white">
+                        <div className="flex flex-col items-center">
                             <div>ACTION BUTTONS ICONS</div>
                             <div>
                                 <strong>Priority: {task.priority}</strong>
@@ -25,10 +25,10 @@ const Task = ({ task, isCurrent }) => {
                         <div className="flex-shrink-0">
                             <input type="checkbox" />
                         </div>
-                        <div class="flex-1 min-w-0">
+                        <div className="flex-1 min-w-0">
                             <h2>{task.title}</h2>
                         </div>
-                        <div class="flex flex-col items-center text-base font-semibold text-gray-900 dark:text-white">
+                        <div className="flex flex-col items-center">
                             <div>ACTION BUTTONS ICONS</div>
                             <div>
                                 <strong>Priority: {task.priority}</strong>
