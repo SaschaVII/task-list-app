@@ -13,7 +13,7 @@ const Index = () => {
                 <title>Task List App</title>
             </Head>
 
-            <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">Task List App</h1>
+            <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">Task List App</h1>
             <TaskList />
             {/* <Button onClick={handleAddTaskClick}>
                 <FontAwesomeIcon className="mr-2 -ml-1" icon={faPlus} />
