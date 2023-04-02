@@ -1,8 +1,9 @@
-import { faGlasses, faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faCaretDown, faCaretUp, faPen, faThumbTack, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { faSquare, faSquareCheck } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Task = ({ task, isCurrent, onComplete, onDelete, onFocus }) => {
+    // TODO: Change the focus icon to a pin icon
     // * Styles
     const currentStyles = "bg-blue-100 py-10";
     const notCurrentStyles = "py-2";
@@ -38,28 +39,31 @@ const Task = ({ task, isCurrent, onComplete, onDelete, onFocus }) => {
                     <FontAwesomeIcon className="text-xl" icon={(task.completed) ? faSquareCheck : faSquare} />
                 </div>
                 <div className="flex-1 min-w-0">
-                    <h2 className={'text-md font-semibold ' + (task.completed && completedStyles)}>{task.title}</h2>
-                    {isCurrent && <p className="text-sm text-gray-500">{task.description}</p>}
+                    <h2 className={'text-xl font-semibold ' + (task.completed && completedStyles)}>{task.title}</h2>
+                    {isCurrent && <p className="text-md text-gray-500">{task.description}</p>}
                 </div>
-                <div className="flex flex-col items-center">
+                <div className={(isCurrent) ? "flex flex-col gap-2 items-end" : "flex flex-row-reverse items-center gap-5"}>
                     {!task.completed && (
                         <>
                             <div className="flex">
-                                <div onClick={handleDeleteClick} className="hover:text-blue-500 p-2 cursor-pointer">
-                                    <FontAwesomeIcon icon={faTrash} />
+                                <div onClick={handleFocusClick} className={"hover:text-blue-500 cursor-pointer px-3 py-1" + ((task.focused) ? " text-blue-500" : "")}>
+                                    <FontAwesomeIcon icon={faThumbTack} />
                                 </div>
-                                <div onClick={handleFocusClick} className={"hover:text-blue-500 p-2 cursor-pointer" + ((task.focused) ? " text-blue-500" : "")}>
-                                    <FontAwesomeIcon icon={faGlasses} />
-                                </div>
-                                <div onClick={handleEditClick} className="hover:text-blue-500 p-2 cursor-pointer">
+                                <div onClick={handleEditClick} className="hover:text-blue-500 cursor-pointer px-3 py-1">
                                     <FontAwesomeIcon icon={faPen} />
                                 </div>
+                                <div onClick={handleDeleteClick} className="hover:text-blue-500 cursor-pointer px-3 py-1">
+                                    <FontAwesomeIcon icon={faTrash} />
+                                </div>
                             </div>
-                            <div>
-                                <strong>Priority: {task.priority}</strong>
+                            <div className="px-3">{daysFromNowString(task.dueDate)}</div>
+                            <div className="flex items-center">
+                                <strong className="px-3">Priority: {task.priority}</strong>
+                                <div className="flex flex-col pr-3">
+                                    <FontAwesomeIcon icon={faCaretUp} className="hover:text-blue-500 cursor-pointer" />
+                                    <FontAwesomeIcon icon={faCaretDown} className="hover:text-blue-500 cursor-pointer" />
+                                </div>
                             </div>
-                            <div>Due Date: {task.dueDate}</div>
-                            <div>{daysFromNowString(task.dueDate)}</div>
                         </>
                     )}
                     {task.completed && (
