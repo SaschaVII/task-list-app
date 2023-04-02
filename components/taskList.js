@@ -60,7 +60,7 @@ const TaskList = () => {
             [{
                 "id": 0,
                 "title": "Complete Task List App",
-                "description": "Finish building and testing the task list app by end of week",
+                "description": "Finish building and testing the task list app by end of week. Tempor nulla ullamco proident officia dolore veniam nisi Lorem aute in et ipsum adipisicing cillum. Eiusmod esse et cupidatat nostrud quis in. Ea aliqua ex eu laboris nostrud duis pariatur aute excepteur pariatur qui adipisicing occaecat. Fugiat occaecat ea elit nostrud voluptate. Pariatur adipisicing minim culpa velit. Laboris ut proident ex et aliquip veniam est laborum labore aute reprehenderit ex tempor.",
                 "completed": false,
                 "dueDate": "2023-03-19",
                 "priority": 1,
@@ -91,7 +91,7 @@ const TaskList = () => {
                 "completed": false,
                 "dueDate": "2023-03-16",
                 "priority": 3,
-                "focused": true
+                "focused": false
             },
             {
                 "id": 4,
@@ -154,7 +154,7 @@ const TaskList = () => {
         <ul>
             {uncompletedTasks.length > 0 && (
                 <>
-                    <h2 className="text-4xl font-bold">Pending Tasks</h2>
+                    <h2 className="text-4xl font-bold mb-2">Pending Tasks</h2>
                     <li><Task task={uncompletedTasks[0]} isCurrent={true} onComplete={handleTaskCompletion} onDelete={handleTaskDeletion} onFocus={handleTaskFocus} /></li>
                 </>
             )}
@@ -166,7 +166,7 @@ const TaskList = () => {
                     <FontAwesomeIcon className="mr-2 -ml-1 grow text-2xl" icon={faPlus} />
                 </div>
             </li>
-            {completedTasks.length > 0 && <h2 className="text-4xl font-bold">Completed Tasks</h2>}
+            {completedTasks.length > 0 && <h2 className="text-4xl font-bold mb-2">Completed Tasks</h2>}
             {
                 completedTasks.map((task) => (
                     <li key={task.id}><Task task={task} onComplete={handleTaskCompletion} onDelete={handleTaskDeletion} /></li>
