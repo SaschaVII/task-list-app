@@ -2,7 +2,7 @@ import { faCaretDown, faCaretUp, faPen, faThumbTack, faTrash } from "@fortawesom
 import { faSquare, faSquareCheck } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Task = ({ task, isCurrent, onComplete, onDelete, onFocus }) => {
+const Task = ({ task, isCurrent, onComplete, onDelete, onFocus, onTitleClick }) => {
     // * Styles
     const currentStyles = "bg-blue-100 py-10 shadow-lg";
     const notCurrentStyles = "py-2";
@@ -16,6 +16,7 @@ const Task = ({ task, isCurrent, onComplete, onDelete, onFocus }) => {
     const handleDeleteClick = () => onDelete(task.id);
     const handleFocusClick = () => onFocus(task.id);
     const handleEditClick = () => console.log("Edit Clicked");
+    const handleTitleClick = () => onTitleClick(task.id);
 
     // * Helper Functions
     const calculateDaysFromNow = (date) => {
@@ -38,7 +39,11 @@ const Task = ({ task, isCurrent, onComplete, onDelete, onFocus }) => {
                     <FontAwesomeIcon className="text-xl" icon={(task.completed) ? faSquareCheck : faSquare} />
                 </div>
                 <div className="flex-1 min-w-0">
-                    <h2 className={'text-xl font-semibold ' + (task.completed && completedStyles)}>{task.title}</h2>
+                    <h2 className={'text-xl font-semibold inline-block hover:text-blue-500 cursor-pointer '
+                    + (task.completed && completedStyles)}
+                    onClick={handleTitleClick}>
+                        {task.title}
+                    </h2>
                     {isCurrent && <p className="text-md text-gray-500">{task.description}</p>}
                 </div>
                 <div className={(isCurrent) ? "flex flex-col gap-3 items-end" : "flex flex-col items-end gap-3 md:flex-row-reverse md:items-center md:gap-5"}>

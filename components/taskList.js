@@ -45,6 +45,11 @@ const TaskList = () => {
         setTaskList(updatedTaskList);
     };
 
+    const handleTitleClick = (taskId) => {
+        // navigate to task page with id matching taskId
+        console.log("Navigating to task page with id: " + taskId);
+    };
+
     const handleFillDummyDataClick = () => fillDummyList();
     const handleAddTaskClick = () => addTask();
 
@@ -156,11 +161,11 @@ const TaskList = () => {
                 {uncompletedTasks.length > 0 && (
                     <>
                         <h2 className="text-4xl font-bold mb-2">Pending Tasks</h2>
-                        <li><Task task={uncompletedTasks[0]} isCurrent={true} onComplete={handleTaskCompletion} onDelete={handleTaskDeletion} onFocus={handleTaskFocus} /></li>
+                        <li><Task task={uncompletedTasks[0]} isCurrent={true} onComplete={handleTaskCompletion} onDelete={handleTaskDeletion} onFocus={handleTaskFocus} onTitleClick={handleTitleClick} /></li>
                     </>
                 )}
                 {uncompletedTasks.slice(1).map((task) => (
-                    <li key={task.id}><Task task={task} onComplete={handleTaskCompletion} onDelete={handleTaskDeletion} onFocus={handleTaskFocus} /></li>
+                    <li key={task.id}><Task task={task} onComplete={handleTaskCompletion} onDelete={handleTaskDeletion} onFocus={handleTaskFocus} onTitleClick={handleTitleClick} /></li>
                 ))}
                 <li>
                     <div className="px-5 py-4 flex items-center space-x-4 cursor-pointer hover:bg-gray-200" onClick={handleAddTaskClick}>
@@ -172,7 +177,7 @@ const TaskList = () => {
                 {completedTasks.length > 0 && <h2 className="text-4xl font-bold mb-2">Completed Tasks</h2>}
                 {
                     completedTasks.map((task) => (
-                        <li key={task.id}><Task task={task} onComplete={handleTaskCompletion} onDelete={handleTaskDeletion} /></li>
+                        <li key={task.id}><Task task={task} onComplete={handleTaskCompletion} onDelete={handleTaskDeletion} onTitleClick={handleTitleClick} /></li>
                     ))
                 }
             </ul>
