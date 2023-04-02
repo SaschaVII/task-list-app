@@ -2,7 +2,7 @@ import { faCaretDown, faCaretUp, faPen, faThumbTack, faTrash } from "@fortawesom
 import { faSquare, faSquareCheck } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Task = ({ task, isCurrent, onComplete, onDelete, onFocus, onTitleClick }) => {
+const Task = ({ task, isCurrent, onComplete, onDelete, onFocus, onTitleClick, onPriorityChange }) => {
     // * Styles
     const currentStyles = "bg-blue-100 py-10 shadow-lg";
     const notCurrentStyles = "py-2";
@@ -17,6 +17,8 @@ const Task = ({ task, isCurrent, onComplete, onDelete, onFocus, onTitleClick }) 
     const handleFocusClick = () => onFocus(task.id);
     const handleEditClick = () => console.log("Edit Clicked");
     const handleTitleClick = () => onTitleClick(task.id);
+    const handlePriorityUpClick = () => onPriorityChange(task.id, task.priority - 1);
+    const handlePriorityDownClick = () => onPriorityChange(task.id, task.priority + 1);
 
     // * Helper Functions
     const calculateDaysFromNow = (date) => {
@@ -64,8 +66,12 @@ const Task = ({ task, isCurrent, onComplete, onDelete, onFocus, onTitleClick }) 
                             <div className="flex items-center">
                                 <strong className="px-3">Priority: {task.priority}</strong>
                                 <div className="flex flex-col pr-3">
-                                    <FontAwesomeIcon icon={faCaretUp} className="hover:text-blue-500 cursor-pointer" />
-                                    <FontAwesomeIcon icon={faCaretDown} className="hover:text-blue-500 cursor-pointer" />
+                                    <div className="hover:text-blue-500 cursor-pointer" onClick={handlePriorityUpClick}>
+                                        <FontAwesomeIcon icon={faCaretUp} />
+                                    </div>
+                                    <div className="hover:text-blue-500 cursor-pointer" onClick={handlePriorityDownClick}>
+                                        <FontAwesomeIcon icon={faCaretDown} className="hover:text-blue-500 cursor-pointer" />
+                                    </div>
                                 </div>
                             </div>
                         </>

@@ -50,6 +50,17 @@ const TaskList = () => {
         console.log("Navigating to task page with id: " + taskId);
     };
 
+    const handlePriorityChange = (taskId, newPriority) => {
+        // set task with id matching taskId to newPriority
+        const updatedTaskList = taskList.map(task => {
+            if (task.id === taskId) {
+                task.priority = newPriority;
+            }
+            return task;
+        });
+        setTaskList(updatedTaskList);
+    };
+
     const handleFillDummyDataClick = () => fillDummyList();
     const handleAddTaskClick = () => addTask();
 
@@ -161,11 +172,11 @@ const TaskList = () => {
                 {uncompletedTasks.length > 0 && (
                     <>
                         <h2 className="text-4xl font-bold mb-2">Pending Tasks</h2>
-                        <li><Task task={uncompletedTasks[0]} isCurrent={true} onComplete={handleTaskCompletion} onDelete={handleTaskDeletion} onFocus={handleTaskFocus} onTitleClick={handleTitleClick} /></li>
+                        <li><Task task={uncompletedTasks[0]} isCurrent={true} onComplete={handleTaskCompletion} onDelete={handleTaskDeletion} onFocus={handleTaskFocus} onTitleClick={handleTitleClick} onPriorityChange={handlePriorityChange} /></li>
                     </>
                 )}
                 {uncompletedTasks.slice(1).map((task) => (
-                    <li key={task.id}><Task task={task} onComplete={handleTaskCompletion} onDelete={handleTaskDeletion} onFocus={handleTaskFocus} onTitleClick={handleTitleClick} /></li>
+                    <li key={task.id}><Task task={task} onComplete={handleTaskCompletion} onDelete={handleTaskDeletion} onFocus={handleTaskFocus} onTitleClick={handleTitleClick} onPriorityChange={handlePriorityChange} /></li>
                 ))}
                 <li>
                     <div className="px-5 py-4 flex items-center space-x-4 cursor-pointer hover:bg-gray-200" onClick={handleAddTaskClick}>
