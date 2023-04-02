@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Task = ({ task, isCurrent, onComplete, onDelete, onFocus }) => {
     // * Styles
-    const currentStyles = "bg-blue-100 py-10";
+    const currentStyles = "bg-blue-100 py-10 shadow-lg";
     const notCurrentStyles = "py-2";
     const completedStyles = "line-through";
     const baseStyles = "px-5 py-10 flex items-center space-x-4 hover:bg-blue-200";

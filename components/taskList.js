@@ -151,28 +151,32 @@ const TaskList = () => {
         </>
     );
     return (
-        <ul>
-            {uncompletedTasks.length > 0 && (
-                <>
-                    <h2 className="text-4xl font-bold mb-2">Pending Tasks</h2>
-                    <li><Task task={uncompletedTasks[0]} isCurrent={true} onComplete={handleTaskCompletion} onDelete={handleTaskDeletion} onFocus={handleTaskFocus} /></li>
-                </>
-            )}
-            {uncompletedTasks.slice(1).map((task) => (
-                <li key={task.id}><Task task={task} onComplete={handleTaskCompletion} onDelete={handleTaskDeletion} onFocus={handleTaskFocus} /></li>
-            ))}
-            <li>
-                <div className="px-5 py-7 flex items-center space-x-4 cursor-pointer hover:bg-gray-200" onClick={handleAddTaskClick}>
-                    <FontAwesomeIcon className="mr-2 -ml-1 grow text-2xl" icon={faPlus} />
-                </div>
-            </li>
-            {completedTasks.length > 0 && <h2 className="text-4xl font-bold mb-2">Completed Tasks</h2>}
-            {
-                completedTasks.map((task) => (
-                    <li key={task.id}><Task task={task} onComplete={handleTaskCompletion} onDelete={handleTaskDeletion} /></li>
-                ))
-            }
-        </ul >
+        <>
+            <ul className="divide-y divide-gray-200 mb-4">
+                {uncompletedTasks.length > 0 && (
+                    <>
+                        <h2 className="text-4xl font-bold mb-2">Pending Tasks</h2>
+                        <li><Task task={uncompletedTasks[0]} isCurrent={true} onComplete={handleTaskCompletion} onDelete={handleTaskDeletion} onFocus={handleTaskFocus} /></li>
+                    </>
+                )}
+                {uncompletedTasks.slice(1).map((task) => (
+                    <li key={task.id}><Task task={task} onComplete={handleTaskCompletion} onDelete={handleTaskDeletion} onFocus={handleTaskFocus} /></li>
+                ))}
+                <li>
+                    <div className="px-5 py-4 flex items-center space-x-4 cursor-pointer hover:bg-gray-200" onClick={handleAddTaskClick}>
+                        <FontAwesomeIcon className="mr-2 -ml-1 grow text-2xl" icon={faPlus} />
+                    </div>
+                </li>
+            </ul>
+            <ul className="divide-y divide-gray-200">
+                {completedTasks.length > 0 && <h2 className="text-4xl font-bold mb-2">Completed Tasks</h2>}
+                {
+                    completedTasks.map((task) => (
+                        <li key={task.id}><Task task={task} onComplete={handleTaskCompletion} onDelete={handleTaskDeletion} /></li>
+                    ))
+                }
+            </ul>
+        </>
     );
 };
 
