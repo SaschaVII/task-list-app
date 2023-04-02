@@ -41,7 +41,7 @@ const Task = ({ task, isCurrent, onComplete, onDelete, onFocus }) => {
                     <h2 className={'text-xl font-semibold ' + (task.completed && completedStyles)}>{task.title}</h2>
                     {isCurrent && <p className="text-md text-gray-500">{task.description}</p>}
                 </div>
-                <div className={(isCurrent) ? "flex flex-col gap-3 items-end" : "flex flex-col reverse items-end gap-3 md:flex-row md:items-center md:gap-5"}>
+                <div className={(isCurrent) ? "flex flex-col gap-3 items-end" : "flex flex-col items-end gap-3 md:flex-row-reverse md:items-center md:gap-5"}>
                     {!task.completed && (
                         <>
                             <div className="flex">
@@ -55,7 +55,7 @@ const Task = ({ task, isCurrent, onComplete, onDelete, onFocus }) => {
                                     <FontAwesomeIcon icon={faTrash} />
                                 </div>
                             </div>
-                            <div className="px-3">{daysFromNowString(task.dueDate)}</div>
+                            <div className="px-3 md:order-last">{daysFromNowString(task.dueDate)}</div>
                             <div className="flex items-center">
                                 <strong className="px-3">Priority: {task.priority}</strong>
                                 <div className="flex flex-col pr-3">
