@@ -41,12 +41,28 @@ const TaskDetails = () => {
         });
 
         setTaskList(updatedTaskList);
+        alert("Task saved!");
         router.push("/");
     };
 
     const handleChange = (event) => {
         const { name, value } = event.target;
         setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
+    };
+
+    const handleKeyDown = (event) => {
+        if (event.key === "Enter") {
+            handleSave();
+        }
+    };
+
+    const handleTextareaKeyDown = (event) => {
+        event.stopPropagation();
+
+        // fire save event except for when enter and shift are pressed together
+        if (event.key === "Enter" && !event.shiftKey) {
+            handleSave();
+        }
     };
 
     // display loading message whilst form data is being populated
@@ -61,7 +77,7 @@ const TaskDetails = () => {
     return (
         <div className="container mx-auto px-4 pt-5">
             <h1 className="mb-6 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">Task Details</h1>
-            <form className="mb-4" onSubmit={handleSave} >
+            <form className="mb-4" onKeyDown={handleKeyDown}>
                 <label className="block mb-2" htmlFor="title">Title</label>
                 <input className="w-full mb-4 p-2 border border-gray-300 rounded"
                     type="text"
@@ -75,7 +91,8 @@ const TaskDetails = () => {
                     id="description"
                     name="description"
                     value={formData.description}
-                    onChange={handleChange} />
+                    onChange={handleChange}
+                    onKeyDown={handleTextareaKeyDown} />
 
                 <label className="block mb-2" htmlFor="dueDate">Due Date</label>
                 <input className="w-full mb-4 p-2 border border-gray-300 rounded"

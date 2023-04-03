@@ -52,7 +52,7 @@ const Task = ({ task, isCurrent, onComplete, onDelete, onFocus, onEdit, onPriori
                         <>
                             <div className="flex">
                                 <div onClick={handleFocusClick} className={"hover:text-blue-500 cursor-pointer px-3 py-1" + ((task.focused) ? " text-blue-500" : "")}>
-                                    <FontAwesomeIcon icon={faThumbTack} />
+                                    <FontAwesomeIcon icon={faThumbTack} rotation={(task.focused) ? 90 : 0} />
                                 </div>
                                 <div onClick={handleEditClick} className="hover:text-blue-500 cursor-pointer px-3 py-1">
                                     <FontAwesomeIcon icon={faPen} />
