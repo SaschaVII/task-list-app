@@ -47,11 +47,6 @@ const TaskList = () => {
         setTaskList(updatedTaskList);
     };
 
-    const handleTitleClick = (taskId) => {
-        // navigate to task page with id matching taskId
-        console.log("Navigating to task page with id: " + taskId);
-    };
-
     const handlePriorityChange = (taskId, newPriority) => {
         // set task with id matching taskId to newPriority
         const updatedTaskList = taskList.map(task => {
@@ -185,7 +180,6 @@ const TaskList = () => {
                                 onComplete={handleTaskCompletion}
                                 onDelete={handleTaskDeletion}
                                 onFocus={handleTaskFocus}
-                                onTitleClick={handleTitleClick}
                                 onPriorityChange={handlePriorityChange}
                                 onEdit={handleTaskEdit} />
                         </li>
@@ -197,7 +191,6 @@ const TaskList = () => {
                             onComplete={handleTaskCompletion}
                             onDelete={handleTaskDeletion}
                             onFocus={handleTaskFocus}
-                            onTitleClick={handleTitleClick}
                             onPriorityChange={handlePriorityChange}
                             onEdit={handleTaskEdit} />
                     </li>
@@ -216,7 +209,6 @@ const TaskList = () => {
                             <Task task={task}
                                 onComplete={handleTaskCompletion}
                                 onDelete={handleTaskDeletion}
-                                onTitleClick={handleTitleClick}
                                 onEdit={handleTaskEdit} />
                         </li>
                     ))
