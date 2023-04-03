@@ -2,7 +2,7 @@
   "name": "task-list-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://saschavii.github.io/task-list-app",
+  "homepage": "https://saschavii.github.io/task-list-app/",
   "scripts": {
     "dev": "next dev",
     "predeploy": "npm run build",
