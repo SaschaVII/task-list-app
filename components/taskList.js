@@ -3,10 +3,12 @@ import useLocalStorageTaskList from "@/hooks/useLocalStorageTaskList";
 import Button from "./button";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faWandMagicSparkles } from '@fortawesome/free-solid-svg-icons'
+import { useRouter } from "next/router";
 
 const TaskList = () => {
     // * States
     const [taskList, setTaskList] = useLocalStorageTaskList();
+    const router = useRouter();
 
     // * Calculated Values
     // sort task list by focused then priority then due date
@@ -59,6 +61,11 @@ const TaskList = () => {
             return task;
         });
         setTaskList(updatedTaskList);
+    };
+
+    const handleTaskEdit = (taskId) => {
+        // navigate to task page with id matching taskId
+        router.push(`/taskDetails?id=${taskId}`);
     };
 
     const handleFillDummyDataClick = () => fillDummyList();
@@ -172,11 +179,28 @@ const TaskList = () => {
                 {uncompletedTasks.length > 0 && (
                     <>
                         <h2 className="text-4xl font-bold mb-2">Pending Tasks</h2>
-                        <li><Task task={uncompletedTasks[0]} isCurrent={true} onComplete={handleTaskCompletion} onDelete={handleTaskDeletion} onFocus={handleTaskFocus} onTitleClick={handleTitleClick} onPriorityChange={handlePriorityChange} /></li>
+                        <li>
+                            <Task task={uncompletedTasks[0]}
+                                isCurrent={true}
+                                onComplete={handleTaskCompletion}
+                                onDelete={handleTaskDeletion}
+                                onFocus={handleTaskFocus}
+                                onTitleClick={handleTitleClick}
+                                onPriorityChange={handlePriorityChange}
+                                onEdit={handleTaskEdit} />
+                        </li>
                     </>
                 )}
                 {uncompletedTasks.slice(1).map((task) => (
-                    <li key={task.id}><Task task={task} onComplete={handleTaskCompletion} onDelete={handleTaskDeletion} onFocus={handleTaskFocus} onTitleClick={handleTitleClick} onPriorityChange={handlePriorityChange} /></li>
+                    <li key={task.id}>
+                        <Task task={task}
+                            onComplete={handleTaskCompletion}
+                            onDelete={handleTaskDeletion}
+                            onFocus={handleTaskFocus}
+                            onTitleClick={handleTitleClick}
+                            onPriorityChange={handlePriorityChange}
+                            onEdit={handleTaskEdit} />
+                    </li>
                 ))}
                 <li>
                     <div className="px-5 py-4 flex items-center space-x-4 cursor-pointer hover:bg-gray-200" onClick={handleAddTaskClick}>
@@ -188,7 +212,13 @@ const TaskList = () => {
                 {completedTasks.length > 0 && <h2 className="text-4xl font-bold mb-2">Completed Tasks</h2>}
                 {
                     completedTasks.map((task) => (
-                        <li key={task.id}><Task task={task} onComplete={handleTaskCompletion} onDelete={handleTaskDeletion} onTitleClick={handleTitleClick} /></li>
+                        <li key={task.id}>
+                            <Task task={task}
+                                onComplete={handleTaskCompletion}
+                                onDelete={handleTaskDeletion}
+                                onTitleClick={handleTitleClick}
+                                onEdit={handleTaskEdit} />
+                        </li>
                     ))
                 }
             </ul>

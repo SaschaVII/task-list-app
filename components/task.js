@@ -2,7 +2,7 @@ import { faCaretDown, faCaretUp, faPen, faThumbTack, faTrash } from "@fortawesom
 import { faSquare, faSquareCheck } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Task = ({ task, isCurrent, onComplete, onDelete, onFocus, onTitleClick, onPriorityChange }) => {
+const Task = ({ task, isCurrent, onComplete, onDelete, onFocus, onEdit, onPriorityChange }) => {
     // * Styles
     const currentStyles = "bg-blue-100 py-10 shadow-lg";
     const notCurrentStyles = "py-2";
@@ -15,8 +15,7 @@ const Task = ({ task, isCurrent, onComplete, onDelete, onFocus, onTitleClick, on
     const handleCompleteTask = () => onComplete(task.id);
     const handleDeleteClick = () => onDelete(task.id);
     const handleFocusClick = () => onFocus(task.id);
-    const handleEditClick = () => console.log("Edit Clicked");
-    const handleTitleClick = () => onTitleClick(task.id);
+    const handleEditClick = () => onEdit(task.id);
     const handlePriorityUpClick = () => onPriorityChange(task.id, task.priority - 1);
     const handlePriorityDownClick = () => onPriorityChange(task.id, task.priority + 1);
 
@@ -43,7 +42,7 @@ const Task = ({ task, isCurrent, onComplete, onDelete, onFocus, onTitleClick, on
                 <div className="flex-1 min-w-0">
                     <h2 className={'text-xl font-semibold inline-block hover:text-blue-500 cursor-pointer '
                         + (task.completed && completedStyles)}
-                        onClick={handleTitleClick}>
+                        onClick={handleEditClick}>
                         {task.title}
                     </h2>
                     {isCurrent && <p className="text-md text-gray-500">{task.description}</p>}
