@@ -143,13 +143,10 @@ const TaskList = () => {
             "focused": false
         };
 
-        console.log(newTask);
-
         setTaskList([...taskList, newTask]);
     };
 
     const generateUniqueId = () => {
-        // ! this is not the best way of generating a unique id
         let uniqueId = taskList.length;
 
         // check if id already exists otherwise keep incrementing
