@@ -42,8 +42,8 @@ const Task = ({ task, isCurrent, onComplete, onDelete, onFocus, onTitleClick, on
                 </div>
                 <div className="flex-1 min-w-0">
                     <h2 className={'text-xl font-semibold inline-block hover:text-blue-500 cursor-pointer '
-                    + (task.completed && completedStyles)}
-                    onClick={handleTitleClick}>
+                        + (task.completed && completedStyles)}
+                        onClick={handleTitleClick}>
                         {task.title}
                     </h2>
                     {isCurrent && <p className="text-md text-gray-500">{task.description}</p>}
@@ -66,11 +66,11 @@ const Task = ({ task, isCurrent, onComplete, onDelete, onFocus, onTitleClick, on
                             <div className="flex items-center">
                                 <strong className="px-3">Priority: {task.priority}</strong>
                                 <div className="flex flex-col pr-3">
-                                    <div className="hover:text-blue-500 cursor-pointer" onClick={handlePriorityUpClick}>
+                                    <div className="hover:text-blue-500 cursor-pointer h-6 px-2 pt-2 flex items-center" onClick={handlePriorityUpClick}>
                                         <FontAwesomeIcon icon={faCaretUp} />
                                     </div>
-                                    <div className="hover:text-blue-500 cursor-pointer" onClick={handlePriorityDownClick}>
-                                        <FontAwesomeIcon icon={faCaretDown} className="hover:text-blue-500 cursor-pointer" />
+                                    <div className="hover:text-blue-500 cursor-pointer h-6 px-2 pb-2 flex items-center" onClick={handlePriorityDownClick}>
+                                        <FontAwesomeIcon icon={faCaretDown} />
                                     </div>
                                 </div>
                             </div>
