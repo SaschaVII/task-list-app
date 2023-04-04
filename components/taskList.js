@@ -63,7 +63,11 @@ const TaskList = () => {
         router.push(`/taskDetails?id=${taskId}`);
     };
 
-    const handleAddTaskClick = () => addTask();
+    const handleAddTaskClick = () => {
+        const newTaskId = generateUniqueId();
+        addTask(newTaskId);
+        router.push(`/taskDetails?id=${newTaskId}`);
+    };
 
     // * Helper Functions
     function compareDates(a, b) {
@@ -72,13 +76,13 @@ const TaskList = () => {
         return dateA - dateB;
     };
 
-    const addTask = () => {
+    const addTask = (taskId) => {
         const newTask = {
-            "id": generateUniqueId(),
-            "title": "Lead a 7a",
-            "description": "Readpoint a 7a indoor sport climb.",
+            "id": taskId,
+            "title": "New Task",
+            "description": "",
             "completed": false,
-            "dueDate": "2023-03-30",
+            "dueDate": new Date(),
             "priority": 1,
             "focused": false
         };
