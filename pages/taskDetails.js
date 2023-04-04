@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import useLocalStorageTaskList from "@/hooks/useLocalStorageTaskList";
 import Button from '@/components/button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeftLong, faCircle, faCircleNotch, faFloppyDisk, faSpinner, faStroopwafel } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeftLong, faCircle, faCircleNotch, faFloppyDisk, faSpinner, faStroopwafel, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const TaskDetails = () => {
     const router = useRouter();
@@ -42,6 +42,13 @@ const TaskDetails = () => {
 
         setTaskList(updatedTaskList);
         alert("Task saved!");
+        router.push("/");
+    };
+
+    const handleDelete = () => {
+        const updatedTaskList = taskList.filter(task => task.id !== formData.id);
+        setTaskList(updatedTaskList);
+        alert("Task deleted!");
         router.push("/");
     };
 
@@ -110,13 +117,17 @@ const TaskDetails = () => {
                     value={formData.priority}
                     onChange={handleChange} />
             </form>
-            <Button onClick={handleBack}>
-                <FontAwesomeIcon className="mr-2" icon={faArrowLeftLong} />
-                Back
-            </Button>
             <Button onClick={handleSave}>
                 <FontAwesomeIcon className="mr-2" icon={faFloppyDisk} />
                 Save
+            </Button>
+            <Button type="danger" onClick={handleDelete}>
+                <FontAwesomeIcon className="mr-2" icon={faTrash} />
+                Delete
+            </Button>
+            <Button type="secondary" onClick={handleBack} className="float-right">
+                <FontAwesomeIcon className="mr-2" icon={faArrowLeftLong} />
+                Back
             </Button>
         </div>
     );
