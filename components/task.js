@@ -1,6 +1,7 @@
 import { faCaretDown, faCaretUp, faPen, faThumbTack, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { faSquare, faSquareCheck } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { motion } from "framer-motion";
 
 const Task = ({ task, isCurrent, onComplete, onDelete, onFocus, onEdit, onPriorityChange }) => {
     // * Styles
@@ -9,7 +10,6 @@ const Task = ({ task, isCurrent, onComplete, onDelete, onFocus, onEdit, onPriori
     const completedStyles = "line-through";
     const baseStyles = "px-5 py-10 flex items-center space-x-4 hover:bg-blue-200";
     const styles = baseStyles + (isCurrent ? ` ${currentStyles}` : ` ${notCurrentStyles}`);
-    if (!onComplete) onComplete = () => { };
 
     // * Event Handlers
     const handleCompleteTask = () => onComplete(task.id);

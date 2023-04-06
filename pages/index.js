@@ -1,6 +1,5 @@
 import TaskList from "@/components/taskList";
 import Head from "next/head";
-import Button from "@/components/button";
 
 const Index = () => {
     return (
